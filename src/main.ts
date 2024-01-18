@@ -1,5 +1,6 @@
 import addBorder from "./addBorder";
 import addSymbol from "./addSymbol";
+import checkWinner from "./checkWinner";
 import clearBoard from "./clearBoard";
 import "./style.css";
 
@@ -31,6 +32,8 @@ board.addEventListener("click", (e: Event) => {
   }
 
   const target = e.target as HTMLDivElement;
+
+  // To avoid symbol overwrites in the grid
   const isSymbolPresent = Object.keys(target.dataset).length;
   if (isSymbolPresent) {
     return;
@@ -39,6 +42,7 @@ board.addEventListener("click", (e: Event) => {
   count++;
   const gridElem = board.querySelector(`#${target.id}`)!;
   addSymbol(gridElem, count);
+  checkWinner(board);
 });
 
 const clearBtn = document.querySelector("#clearBtn");
