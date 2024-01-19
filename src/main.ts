@@ -42,7 +42,13 @@ board.addEventListener("click", (e: Event) => {
   count++;
   const gridElem = board.querySelector(`#${target.id}`)!;
   addSymbol(gridElem, count);
-  checkWinner(board);
+  const isWinner = checkWinner(board);
+  if (isWinner) {
+    setTimeout(() => {
+      alert(isWinner);
+      clearBoard(board);
+    }, 1);
+  }
 });
 
 const clearBtn = document.querySelector("#clearBtn");

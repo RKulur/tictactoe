@@ -12,14 +12,10 @@ function compareGrids(
   b: number,
   c: number,
 ) {
-  // console.log(
-  //   getSymbol(grids[a]) === getSymbol(grids[b]) &&
-  //     getSymbol(grids[b]) === getSymbol(grids[c]),
-  // );
   if (checkGridEmpty(grids, [a, b, c])) {
     return {
       player: "",
-      isSame: true,
+      isSame: false,
     };
   }
 
@@ -35,38 +31,62 @@ function compareGrids(
 }
 
 function checkGridEmpty(grids: Element[], positions: number[]) {
-  for (let idx in positions) {
-    if (!getSymbol(grids[idx])) {
-      console.log(getSymbol(grids[idx]));
-      return true;
+  let symbol;
+  for (let i = 1; i < positions.length; i++) {
+    if (
+      getSymbol(grids[positions[i - 1]]) === null &&
+      getSymbol(grids[positions[i]]) === null
+    ) {
+      symbol = true;
+      continue;
     }
+    symbol = false;
   }
+  // console.log(symbol);
+  return symbol;
 }
 
-export default function checkWinner(board: Element) {
+export default function checkWinner(board: Element): string | null {
   const grids = Array.from(board.children) as HTMLDivElement[];
   if (compareGrids(grids, 0, 1, 2)?.isSame) {
-    console.log(compareGrids(grids, 0, 1, 2)?.player);
-    return;
+    return `Player ${
+      compareGrids(grids, 0, 1, 2)?.player === "cross" ? "X" : "O"
+    } won!!`;
   }
-  if (compareGrids(grids, 3, 4, 5)) {
-    console.log("Winner");
-    return;
+  if (compareGrids(grids, 3, 4, 5)?.isSame) {
+    return `Player ${
+      compareGrids(grids, 3, 4, 5)?.player === "cross" ? "X" : "O"
+    } won!!`;
   }
-  if (compareGrids(grids, 6, 7, 8)) {
-    console.log("Winner");
-    return;
+  if (compareGrids(grids, 6, 7, 8)?.isSame) {
+    return `Player ${
+      compareGrids(grids, 6, 7, 8)?.player === "cross" ? "X" : "O"
+    } won!!`;
   }
-  if (compareGrids(grids, 0, 3, 6)) {
-    console.log("Winner");
-    return;
+  if (compareGrids(grids, 0, 3, 6)?.isSame) {
+    return `Player ${
+      compareGrids(grids, 0, 3, 6)?.player === "cross" ? "X" : "O"
+    } won!!`;
   }
-  if (compareGrids(grids, 1, 4, 7)) {
-    console.log("Winner");
-    return;
+  if (compareGrids(grids, 1, 4, 7)?.isSame) {
+    return `Player ${
+      compareGrids(grids, 1, 4, 7)?.player === "cross" ? "X" : "O"
+    } won!!`;
   }
-  if (compareGrids(grids, 2, 5, 8)) {
-    console.log("Winner");
-    return;
+  if (compareGrids(grids, 2, 5, 8)?.isSame) {
+    return `Player ${
+      compareGrids(grids, 2, 5, 8)?.player === "cross" ? "X" : "O"
+    } won!!`;
   }
+  if (compareGrids(grids, 2, 4, 6)?.isSame) {
+    return `Player ${
+      compareGrids(grids, 2, 4, 6)?.player === "cross" ? "X" : "O"
+    } won!!`;
+  }
+  if (compareGrids(grids, 0, 4, 8)?.isSame) {
+    return `Player ${
+      compareGrids(grids, 0, 4, 8)?.player === "cross" ? "X" : "O"
+    } won!!`;
+  }
+  return null;
 }

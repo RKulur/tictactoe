@@ -8,13 +8,12 @@ function addCross(element: Element) {
 }
 
 function addNought(element: Element) {
-  element.innerHTML = `<div data-symbol="nought" class="h-full flex w-full p-3 relative">
-          <div data-symbol="nought" class="bg-black h-full w-full p-5 rounded-full">
+  element.innerHTML = `<div data-symbol="nought" class="h-full flex w-full p-4 relative">
+          <div data-symbol="nought" class="bg-black h-full w-full p-6 rounded-full">
             <div data-symbol="nought" class="bg-white h-full w-full rounded-full"></div>
           </div> 
         </div>`;
 }
-
 export default function addSymbol(element: Element, player: number) {
   if (player % 2 == 0) {
     addCross(element);
